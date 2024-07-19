@@ -1,3 +1,5 @@
+using HealthCheck.Appointments.Domain.Constants;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HealthCheck.Appointments.Controllers
@@ -18,6 +20,7 @@ namespace HealthCheck.Appointments.Controllers
             _logger = logger;
         }
 
+        [Authorize(Roles = $"{RolesConstants.Doctor}")]
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
