@@ -16,6 +16,7 @@ public static class DependencyInjectionConfiguration
         //ConfigureHealthChecks.Register(services);
         ConfigureOptions.Register(services, configuration);
         ConfigureSecurity.Register(services, configuration);
+        InjectionConfig.AddDependencies(services, configuration);
         //ConfigureServices.Register(services);
     }
 }

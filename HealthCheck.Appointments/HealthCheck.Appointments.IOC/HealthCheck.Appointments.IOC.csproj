@@ -13,7 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\HealthCheck.Appointments.Application\HealthCheck.Appointments.Application.csproj" />
     <ProjectReference Include="..\HealthCheck.Appointments.Domain\HealthCheck.Appointments.Domain.csproj" />
+    <ProjectReference Include="..\HealthCheck.Appointments.Infrastructure\HealthCheck.Appointments.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
