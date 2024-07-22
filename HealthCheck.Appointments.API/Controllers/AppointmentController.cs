@@ -37,7 +37,20 @@ public class AppointmentController(IAppointmentUseCase service) : ControllerBase
         return Ok();
     }
 
-    [Authorize]
+    [Authorize(Roles = $"{RolesConstants.Doctor}")]
+    [HttpPut("{appointmentId:Guid}", Name = "Edit an appointment time")]
+    [SwaggerOperation(
+Summary = "Edit an appointment time",
+Description = "Edit an appointment time.")]
+    [ProducesResponseType(typeof(IEnumerable<Appointment>), StatusCodes.Status200OK)]
+    [ProducesDefaultResponseType]
+    public async Task<ActionResult> EditAppointmentTime(Guid appointmentId, [FromBody] UpdateAppointmentTimeModel model)
+    {
+        await service.UpdateTime(appointmentId, model);
+        return Ok();
+    }
+
+    [Authorize(Roles = $"{RolesConstants.Patient}")]
     [HttpGet("{id:Guid}", Name = "Get appointments by DoctorId")]
     [SwaggerOperation(
  Summary = "Get appointments by DoctorId",
@@ -60,6 +73,19 @@ Description = "Schedule an appointment.")]
     public async Task<ActionResult> ScheduleAppointment(Guid appointmentId, Guid patientId)
     {
         await service.ScheduleAppointment(appointmentId, patientId);
+        return Ok();
+    }
+
+    [Authorize(Roles = $"{RolesConstants.Doctor}")]
+    [HttpPut("{appointmentId:Guid}/updateTime", Name = "Accept or decline an appointment")]
+    [SwaggerOperation(
+Summary = "Accept or decline an appointment",
+Description = "Accept or decline an appointment.")]
+    [ProducesResponseType(typeof(IEnumerable<Appointment>), StatusCodes.Status200OK)]
+    [ProducesDefaultResponseType]
+    public async Task<ActionResult> AppointmentConfirmation(Guid appointmentId, [FromQuery] bool accepted)
+    {
+        await service.ConfirmAppointment(appointmentId, accepted);
         return Ok();
     }
 }

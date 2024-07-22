@@ -14,4 +14,8 @@ public interface IAppointmentUseCase
     Task<IEnumerable<Appointment>> GetByDoctorId(Guid doctorId);
 
     Task ScheduleAppointment(Guid appointmentId, Guid patientId);
+
+    Task UpdateTime(Guid appointmentId, UpdateAppointmentTimeModel model);
+
+    Task ConfirmAppointment(Guid appointmentId, bool appointmentAccepted);
 }

@@ -13,6 +13,20 @@ public class AppointmentUseCase(IAppointmentRepository repository) : IAppointmen
         await repository.Add(appointment);
     }
 
+    public async Task ConfirmAppointment(Guid appointmentId, bool appointmentAccepted)
+    {
+        var appointment = await GetById(appointmentId);
+        if (appointment != null)
+        {
+            if (appointmentAccepted)
+                appointment.AcceptAppointment();
+            else
+                appointment.DeclineAppointment();
+
+            await repository.Update(appointment);
+        }
+    }
+
     public async Task<IEnumerable<Appointment>> GetAll()
     {
         return await repository.GetAll();
@@ -32,6 +46,13 @@ public class AppointmentUseCase(IAppointmentRepository repository) : IAppointmen
     {
         var appointment = await GetById(appointmentId);
         appointment.ScheduleAppointment(patientId);
+        await repository.Update(appointment);
+    }
+
+    public async Task UpdateTime(Guid appointmentId, UpdateAppointmentTimeModel model)
+    {
+        var appointment = await GetById(appointmentId);
+        appointment.UpdateTime(model.Start, model.End);
         await repository.Update(appointment);
     }
 }
