@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthCheck.Appointments.API", "HealthCheck.Appointments\HealthCheck.Appointments.API.csproj", "{857275B3-C8F4-43BE-B58B-6D7859BA9A65}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthCheck.Appointments.API", "HealthCheck.Appointments.API\HealthCheck.Appointments.API.csproj", "{857275B3-C8F4-43BE-B58B-6D7859BA9A65}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7A33CD82-5A22-45BC-8EFF-8DC5E9C4FE42}"
 EndProject

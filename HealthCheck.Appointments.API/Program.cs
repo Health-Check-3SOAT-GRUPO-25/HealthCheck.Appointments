@@ -1,6 +1,5 @@
 using HealthCheck.Appointments.IOC;
 using Microsoft.OpenApi.Models;
-using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,15 +41,6 @@ builder.Services.AddSwaggerGen(options =>
                 Array.Empty<string>()
             }
         }
-    );
-
-    options.IncludeXmlComments
-    (
-        Path.Combine
-        (
-            AppContext.BaseDirectory,
-            $"{Assembly.GetExecutingAssembly().GetName().Name}.xml"
-        )
     );
 
     options.EnableAnnotations();
